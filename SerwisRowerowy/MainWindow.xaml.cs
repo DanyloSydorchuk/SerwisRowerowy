@@ -24,5 +24,26 @@ namespace SerwisRowerowy
         {
             InitializeComponent();
         }
+
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow dashboard = new MainWindow();
+            dashboard.Show();
+            Close();
+        }
+
+        private void btnUslugi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRezerwacje_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btnUstawienia_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

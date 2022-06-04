@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SerwisRowerowyDB" Class="LINQToSQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=sydorchukPC;Initial Catalog=SerwisRowerowyDB;Integrated Security=True" SettingsObjectName="SerwisRowerowy.Properties.Settings" SettingsPropertyName="SerwisRowerowyDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="UserLogins">
+    <Type Name="UserLogin">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

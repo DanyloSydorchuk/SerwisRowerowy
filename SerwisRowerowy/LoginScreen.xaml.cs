@@ -21,6 +21,8 @@ namespace SerwisRowerowy
     /// </summary>
     public partial class LoginScreen : Window
     {
+        LINQToSQLDataContext dataContext = new LINQToSQLDataContext(
+            Properties.Settings.Default.SerwisRowerowyDBConnectionString);
         public LoginScreen()
         {
             InitializeComponent();
@@ -28,37 +30,61 @@ namespace SerwisRowerowy
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlCon = new SqlConnection(@"Data Source=localhost; Initial Catalog=SerwisRowerowyDB; Integrated Security=True;"); 
-            try
-            {
-                if (sqlCon.State == ConnectionState.Closed)
-                    sqlCon.Open();
-                string query = "Select count(1) from Users where Username=@Username and Password=@Password";
-                SqlCommand sqlCommand = new SqlCommand(query, sqlCon);
-                sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@Username",tbUsername.Text);
-                sqlCommand.Parameters.AddWithValue("@Password", tbPassword.Password);
-                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+            //SqlConnection sqlCon = new SqlConnection(@"Data Source=localhost; Initial Catalog=SerwisRowerowyDB; Integrated Security=True;"); 
+            //try
+            //{
+            //    if (sqlCon.State == ConnectionState.Closed)
+            //        sqlCon.Open();
+            //    string query = "Select count(1) from Users where Username=@Username and Password=@Password";
+            //    SqlCommand sqlCommand = new SqlCommand(query, sqlCon);
+            //    sqlCommand.CommandType = CommandType.Text;
+            //    sqlCommand.Parameters.AddWithValue("@Username",tbUsername.Text);
+            //    sqlCommand.Parameters.AddWithValue("@Password", tbPassword.Password);
+            //    int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
-                if(count == 1)
+            //    if(count == 1)
+            //    {
+            //        MainWindow dashboard = new MainWindow();
+            //        dashboard.Show();
+            //        this.Close();
+            //    }
+            //    else
+            //    {
+
+            //        MessageBox.Show("Username or passwprd is incorrect.");
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    sqlCon.Close();
+            //}
+            if (dataContext.DatabaseExists())
+            {
+                //string query = "Select count(1) from Users where Username=@Username and Password=@Password";
+                //sqlCommand.Parameters.AddWithValue("@Username", tbUsername.Text);
+                //sqlCommand.Parameters.AddWithValue("@Password", tbPassword.Password);
+                //List<UserLogin> lista = dataContext.UserLogins.ToList();
+                var user = dataContext.UserLogins.Where(u => u.Username == tbUsername.Text && u.Password == tbPassword.Password).FirstOrDefault();
+                if (user!=null)
                 {
                     MainWindow dashboard = new MainWindow();
                     dashboard.Show();
-                    this.Close();
+                    Close();
                 }
                 else
                 {
-                    MessageBox.Show("Username or passwprd is incorrect.");
+                    MessageBox.Show("Username or password is incorrect.");
                 }
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
-            }
+            
+                
+                
         }
+
     }
+    
 }

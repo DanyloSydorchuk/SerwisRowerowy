@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Dashboard" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="647*"/>
+        </Grid.ColumnDefinitions>
+        <Menu HorizontalAlignment="Left" Height="419" Margin="-1,0,0,0" VerticalAlignment="Top" Width="146" >
+            <Button Content="Menu" Click="btnMenu_Click" Width="130" Height="46" Margin="0,12,0,5"/>
+            <Button Content="Usługi" Click="btnUslugi_Click" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Rezerwacje" Click="btnRezerwacje_Click" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Ustawienia" Click="btnUstawienia_Click" Width="130" Height="46" Margin="0,5,0,5"/>
+        </Menu>
+
+
     </Grid>
 </Window>
