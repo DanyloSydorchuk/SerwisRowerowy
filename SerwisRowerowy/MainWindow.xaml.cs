@@ -45,5 +45,11 @@ namespace SerwisRowerowy
         {
 
         }
+
+        private void btnWyloguj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }

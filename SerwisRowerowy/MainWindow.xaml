@@ -17,8 +17,8 @@
             <Button Content="Rezerwacje" Click="btnRezerwacje_Click" Width="130" Height="46" Margin="0,5,0,5"/>
             <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
             <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
-            <Button Content="Button" Width="130" Height="46" Margin="0,5,0,5"/>
             <Button Content="Ustawienia" Click="btnUstawienia_Click" Width="130" Height="46" Margin="0,5,0,5"/>
+            <Button Content="Wyloguj" Click="btnWyloguj_Click" Width="130" Height="46" Margin="0,5,0,5"/>
         </Menu>
 
 

@@ -21,8 +21,7 @@ namespace SerwisRowerowy
     /// </summary>
     public partial class LoginScreen : Window
     {
-        LINQToSQLDataContext dataContext = new LINQToSQLDataContext(
-            Properties.Settings.Default.SerwisRowerowyDBConnectionString);
+        SerwisRowerowyDBEntities dataContext = new SerwisRowerowyDBEntities();
         public LoginScreen()
         {
             InitializeComponent();
@@ -62,13 +61,12 @@ namespace SerwisRowerowy
             //{
             //    sqlCon.Close();
             //}
-            if (dataContext.DatabaseExists())
-            {
+            
                 //string query = "Select count(1) from Users where Username=@Username and Password=@Password";
                 //sqlCommand.Parameters.AddWithValue("@Username", tbUsername.Text);
                 //sqlCommand.Parameters.AddWithValue("@Password", tbPassword.Password);
                 //List<UserLogin> lista = dataContext.UserLogins.ToList();
-                var user = dataContext.UserLogins.Where(u => u.Username == tbUsername.Text && u.Password == tbPassword.Password).FirstOrDefault();
+                var user = dataContext.Users.Where(u => u.Username == tbUsername.Text && u.Password == tbPassword.Password).FirstOrDefault();
                 if (user!=null)
                 {
                     MainWindow dashboard = new MainWindow();
@@ -79,7 +77,7 @@ namespace SerwisRowerowy
                 {
                     MessageBox.Show("Username or password is incorrect.");
                 }
-            }
+            
             
                 
                 
