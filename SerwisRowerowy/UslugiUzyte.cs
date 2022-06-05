@@ -12,13 +12,14 @@ namespace SerwisRowerowy
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class UslugiUzyte
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string PracownikID { get; set; }
+        public int id { get; set; }
+        public Nullable<int> ZlecenieID { get; set; }
+        public string UslugiID { get; set; }
+        public Nullable<int> Ilosc { get; set; }
     
-        public virtual Pracownicy Pracownicy { get; set; }
+        public virtual Uslugi Uslugi { get; set; }
+        public virtual Zlecenia Zlecenia { get; set; }
     }
 }

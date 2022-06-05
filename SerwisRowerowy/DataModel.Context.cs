@@ -25,6 +25,12 @@ namespace SerwisRowerowy
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Klienci> Klienci { get; set; }
+        public virtual DbSet<MetodPlatnosci> MetodPlatnosci { get; set; }
+        public virtual DbSet<Pracownicy> Pracownicy { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Uslugi> Uslugi { get; set; }
+        public virtual DbSet<UslugiUzyte> UslugiUzyte { get; set; }
+        public virtual DbSet<Zlecenia> Zlecenia { get; set; }
     }
 }

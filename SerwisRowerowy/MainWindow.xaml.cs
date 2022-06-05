@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace SerwisRowerowy
 {
     /// <summary>
@@ -23,6 +24,7 @@ namespace SerwisRowerowy
         public MainWindow()
         {
             InitializeComponent();
+            Main.Content = new MainPage();
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
@@ -34,10 +36,10 @@ namespace SerwisRowerowy
 
         private void btnUslugi_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new UslugiPage();
         }
 
-        private void btnRezerwacje_Click(object sender, RoutedEventArgs e)
+        private void btnZlecenia_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -48,7 +50,9 @@ namespace SerwisRowerowy
 
         private void btnWyloguj_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginScreen dashboard = new LoginScreen();
+            dashboard.Show();
+            Close();
         }
         
     }

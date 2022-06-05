@@ -4,8 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9c30802d7b644affb2904013fb55b086" Name="Diagram1">
-        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Users" Width="1.5" PointX="0.625" PointY="0.625" IsExpanded="true" />
+      <Diagram DiagramId="5513e2b318a04319adab1912bd54ab30" Name="Diagram1">
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Klienci" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.MetodPlatnosci" Width="1.5" PointX="3.125" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Pracownicy" Width="1.5" PointX="3.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Users" Width="1.5" PointX="0.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Uslugi" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.UslugiUzyte" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SerwisRowerowyDBModel.Zlecenia" Width="1.5" PointX="5.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_klienci" ManuallyRouted="false" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_metodplatnosci" ManuallyRouted="false" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_pracownicy" ManuallyRouted="false" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_pracowniki" ManuallyRouted="false" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_uslugi" ManuallyRouted="false" />
+        <AssociationConnector Association="SerwisRowerowyDBModel.ref_zlecenia" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
