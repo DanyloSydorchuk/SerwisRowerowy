@@ -31,8 +31,18 @@ namespace SerwisRowerowy
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             UslugiRepository uslugiRepository = new UslugiRepository();
-            
-            ListaUslug.ItemsSource = uslugiRepository.uslugiRepository.ToList();
+            //ListaUslug.ItemsSource = uslugiRepository.uslugiRepository.ToList();
+            listBox.ItemsSource = uslugiRepository.GetUslugiRepo();
+        }
+
+        private void btnDodajUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            AddUsluga addUsluga = new AddUsluga();
+            addUsluga.Show();
+        }
+        private void btnDodajZlecenie_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -5,22 +5,51 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SerwisRowerowy"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="647"
       Title="UslugiPage" 
       Loaded="Page_Loaded">
 
-    <Grid Background="Pink">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="145*"/>
-            <ColumnDefinition Width="647*"/>
-        </Grid.ColumnDefinitions>
-        
-        <DataGrid Name="ListaUslug" Grid.ColumnSpan="2" Margin="1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="236*"/>
+            <RowDefinition Height="54"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="ID"  Margin="10,0,2,0" FontWeight="Bold" FontSize="15"/>
+        <TextBlock Grid.Row="0" Text="Nazwa" Margin="40,0,2,0" MinWidth="250" FontSize="15"/>
+        <TextBlock Grid.Row="0" Text="Cena" Margin="320,0,2,0" MinWidth="60"  FontSize="15"/>
+
+
+        <ListBox Grid.Row="1" Name="listBox" FontSize="14" HorizontalAlignment="Left" Width="637" Grid.RowSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding id}" Margin="10,2,2,2" FontWeight="Bold" MinWidth="20"/>
+                        <TextBlock Text="{Binding Nazwa}" Margin="2" MinWidth="250"/>
+                        <TextBlock Text="{Binding cena}" Margin="2" MinWidth="60" TextAlignment="Right"/>
+                        <TextBlock Text="zł" Margin="2" MinWidth="60"/>
+                        <Button Content="Edytuj" Width="50" Margin="5,0,5,0" Padding="5,2,5,2"/>
+                        <Button Content="Usuń" Width="50" Margin="5,0,5,0" Padding="5,2,5,2"/>
+                        <CheckBox Margin="2"></CheckBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <Button Grid.Row="3" MinWidth="120" Content="Dodaj usługę" Margin="130,2,397,2" Padding="5,2,5,2" Click="btnDodajUsluge_Click" />
+        <Button Grid.Row="3" MinWidth="120" Content="Stwórz zamówienie" Margin="397,2,130,2" Padding="5,2,5,2" Click="btnDodajZlecenie_Click" />
+
+
+
+        <!--<DataGrid Name="ListaUslug" Grid.ColumnSpan="2" Margin="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa usługi" Binding="{Binding Nazwa}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Cena" Binding="{Binding cena}"></DataGridTextColumn>
             </DataGrid.Columns>
-            <!--<DataGrid.RowDetailsTemplate>
+            <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
                         <StackPanel Orientation="Vertical">
@@ -35,8 +64,8 @@
                         </StackPanel>
                     </Border>
                 </DataTemplate>
-            </DataGrid.RowDetailsTemplate>-->
-        </DataGrid>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>-->
 
 
 

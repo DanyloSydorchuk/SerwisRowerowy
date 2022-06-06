@@ -1,0 +1,32 @@
+﻿<Window x:Class="SerwisRowerowy.AddUsluga"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerwisRowerowy"
+        xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Dodaj usługę" Height="450" Width="300">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Left" FontSize="18" TextWrapping="Wrap" Text="Nazwa usługi:" VerticalAlignment="Top" Width="250" Margin="10,10,10,0" Height="30"/>
+            <TextBox Name="tbNazwa" HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250" Height="30" Margin="10,0,10,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="18" TextWrapping="Wrap" Text="Akronim:" VerticalAlignment="Top" Width="250" Margin="10,10,10,0" Height="30"/>
+            <TextBox Name="tbAkronim" HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250" Height="30" Margin="10,0,10,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="18" TextWrapping="Wrap" Text="Cena:" VerticalAlignment="Top" Width="250" Margin="10,10,10,0" Height="30"/>
+            <!--<TextBox HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="250" Height="30" Margin="10,0,10,0"/>-->
+            <!--decimal-->
+            <wpfx:DecimalUpDown Name="dcCena"  HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Top" MinWidth="250" Height="30" Margin="10,0,10,0" FormatString="F"/>
+
+
+            <Button Margin="20" Height="40" FontSize="15" Click="btnAddUsluga_Click">Dodaj</Button>
+            
+
+            
+        </StackPanel>
+        
+        
+        
+
+    </Grid>
+</Window>
