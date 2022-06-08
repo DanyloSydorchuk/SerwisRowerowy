@@ -57,12 +57,33 @@ namespace SerwisRowerowy
             }
             
         }
+
         public void AddUslugiRepo(string nazwa, string akronim, decimal cena)
         {
             //List<Uslugi> listaUslug = new List<Uslugi>();
-            uslugiRepository.Add(new Uslugi { id = akronim,
-                Nazwa = nazwa,
-                cena = cena });
+            //uslugiRepository.Add(new Uslugi { id = akronim,
+            //    Nazwa = nazwa,
+            //    cena = cena });
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.SerwisRowerowyDBConnectionString))
+            {
+                if (connection == null)
+                {
+                    throw new Exception("Connection String is Null. Set the value of Connection String in SerwisRowerowyCatalog->Properties-?Settings.settings");
+                }
+                SqlCommand query = new SqlCommand();
+                query.Connection = connection;
+                connection.Open();
+                query.CommandText = "INSERT INTO Uslugi VALUES(@akronim, @nazwa, @cena)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@akronim", akronim);
+                query.Parameters.AddWithValue("@nazwa", nazwa);
+                query.Parameters.AddWithValue("@cena", cena);
+                query.ExecuteNonQuery();
+            }
+        }
+
+        public void EditUsluge()
+        {
 
         }
     }

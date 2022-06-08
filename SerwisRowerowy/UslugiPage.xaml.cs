@@ -42,6 +42,17 @@ namespace SerwisRowerowy
         }
         private void btnDodajZlecenie_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void btnEditUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            //EditUsluge(Name);
+
+        }
+
+        private void btnUsunUsluge_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

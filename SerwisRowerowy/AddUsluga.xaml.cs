@@ -27,11 +27,29 @@ namespace SerwisRowerowy
         private void btnAddUsluga_Click(object sender, RoutedEventArgs e)
         {
             UslugiRepository uslugiRepository = new UslugiRepository();
+            if (dcCena.Value is null)
+            {
+                dcCena.Value = 10;
+            }
             decimal cena = (decimal)dcCena.Value;
-            uslugiRepository.AddUslugiRepo(tbNazwa.Text, tbAkronim.Text, cena);
-            Close();
-        }
-
-        
+            if(cena >=0 && tbNazwa.Text != "" && tbAkronim.Text != "")
+            {
+                if (tbAkronim.Text.Length == 5)
+                {
+                    uslugiRepository.AddUslugiRepo(tbNazwa.Text, tbAkronim.Text, cena);
+                    Close();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Main.Content = new UslugiPage();
+                }
+                else
+                {
+                    MessageBox.Show("Akronim musi mieć długość 5 znaków");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawne dane!");
+            }   
+        }     
     }
 }

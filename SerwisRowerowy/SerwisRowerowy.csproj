@@ -97,6 +97,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditUsluge.xaml.cs">
+      <DependentUpon>EditUsluge.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Klienci.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddUsluga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUsluge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
