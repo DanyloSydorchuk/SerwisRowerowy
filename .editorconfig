@@ -2,3 +2,6 @@
 
 # ASP0000: Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
 dotnet_diagnostic.ASP0000.severity = warning
+
+# AD0001: Analyzer Failure
+dotnet_diagnostic.AD0001.severity = silent

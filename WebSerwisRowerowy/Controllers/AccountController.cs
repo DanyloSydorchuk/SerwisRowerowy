@@ -26,10 +26,6 @@ namespace WebSerwisRowerowy.Controllers
             return Ok();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginUserModel loginUser)

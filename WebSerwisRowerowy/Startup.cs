@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using WebSerwisRowerowy.Middleware;
 using WebSerwisRowerowy.Models;
 using WebSerwisRowerowy.Services;
@@ -61,7 +62,9 @@ namespace WebSerwisRowerowy
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:ApplicationDbContext:ConnectionString"]));
             services.AddScoped<Seeder>();
+            services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IZlecenieService, ZlecenieService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserModel>, RegisterUserValidation>();
             services.AddScoped<ErrorHandlingMiddleware>();
@@ -83,7 +86,7 @@ namespace WebSerwisRowerowy
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebSerwisRowerowy v1"));
             }
-
+            
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseMiddleware<RequestTimeMiddleware>();
             app.UseAuthentication();
