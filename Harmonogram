@@ -1,8 +1,10 @@
-1.Połącznie z bazą danych
-2.Logowanie użytkownika
-3.Rejestracja użytkownika
-4.Przypisanie Roli do użytkownika
-5.CRUD dla Użytkowników
-6.CRUD dla Zleceń serwisowych
-7.CRUD dla Usług
+1.Połącznie z bazą danych;
+2.Logowanie użytkownika;
+3.Rejestracja użytkownika;
+4.Przypisanie Roli do użytkownika i podział zadań na role;
+5.Autoryzacja użytkownika za pomocą tokenu JWT;
+6.CRUD dla Użytkowników;
+7.CRUD dla Zleceń serwisowych;
+8.CRUD dla Usług;
+9.
 
