@@ -34,10 +34,35 @@ namespace WebSerwisRowerowy.Services
         public int Create(ZlecenieModel zlecenieModel)
         {
             var zlecenie = _mapper.Map<Zlecenie>(zlecenieModel);
+            //var result = from uz in uslugaZlecenie
+            //             join z in listazlecen
+            //             on uz.ZlecenieID equals z.Id
+            //             join u in usluga
+            //             on uz.UslugiID equals u.Id
+            //             select new { z.Id, uz.Ilosc, u.CenaNetto, u.PodatekVAT
+            //             };
             _dbContext.Zlecenia.Add(zlecenie);
             _dbContext.SaveChanges();
+            if (_dbContext.UslugiUzyte.Select(uz => uz.Id == zlecenie.Id) is not null)
+            {
+                var result = _dbContext.Uslugi.Join(_dbContext.UslugiUzyte,
+                              u => u.Id,
+                              uz => uz.UslugiID,
+                              (u, uz) => new
+                              {
+                                  ZlecenieId = uz.ZlecenieID,
+                                  UslugaId = u.Id,
+                                  Cena = u.CenaNetto,
+                                  Podatek = u.PodatekVAT,
+                                  Ilosc = uz.Ilosc
+                              })
+                      .Where(u => u.ZlecenieId == zlecenie.Id)
+                      .Sum(u => u.Cena * u.Ilosc * (1+u.Podatek));
+                zlecenieModel.CenaBrutto = result;
+                Update(zlecenie.Id, zlecenieModel);
 
-            return zlecenie.Id;
+            }
+             return zlecenie.Id;
         }
 
         public void Delete(int id)
@@ -58,8 +83,7 @@ namespace WebSerwisRowerowy.Services
 
         public IEnumerable<ZlecenieModel> GetAll()
         {
-            var zlecenia = _dbContext
-                .Zlecenia
+            var zlecenia = _dbContext.Zlecenia
                 //.Include(z => z.UslugiUzyte)
                 //.Include(z => z.MetodPlatnosci)
                 .ToList();
@@ -91,10 +115,14 @@ namespace WebSerwisRowerowy.Services
             if (zlecenie is null)
                 throw new NotFoundException($"Brak zlecenia o id: {id}");
 
-            zlecenie.PracownikID = zlecenieModel.PracownikID;
-            zlecenie.DataOdbioru = zlecenieModel.DataOdbioru;
-            zlecenie.CenaBrutto = zlecenieModel.CenaBrutto;
-            zlecenie.MetodPlatnosciID = zlecenieModel.MetodPlatnosciID;
+            if (zlecenieModel.PracownikID is not null)
+                zlecenie.PracownikID = zlecenieModel.PracownikID;
+            if (zlecenieModel.DataOdbioru is not null)
+                zlecenie.DataOdbioru = zlecenieModel.DataOdbioru;
+            if (zlecenieModel.CenaBrutto is not null)
+                zlecenie.CenaBrutto = zlecenieModel.CenaBrutto;
+            if (zlecenieModel.MetodPlatnosciID is not null)
+                zlecenie.MetodPlatnosciID = zlecenieModel.MetodPlatnosciID;
 
             _dbContext.SaveChanges();
         }

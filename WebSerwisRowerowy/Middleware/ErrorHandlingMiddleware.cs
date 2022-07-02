@@ -27,6 +27,11 @@ namespace WebSerwisRowerowy.Middleware
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync(badRequestException.Message);
             }
+            catch (NotFoundException notFoundException)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(notFoundException.Message);
+            }
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);

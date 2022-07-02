@@ -65,6 +65,9 @@ namespace WebSerwisRowerowy
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IZlecenieService, ZlecenieService>();
+            services.AddScoped<IUslugaService, UslugaService>();
+            services.AddScoped<IKlientService, KlientService>();
+            services.AddScoped<IPracownikService, PracownikService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserModel>, RegisterUserValidation>();
             services.AddScoped<ErrorHandlingMiddleware>();

@@ -7,9 +7,9 @@ using WebSerwisRowerowy.Models;
 
 namespace WebSerwisRowerowy
 {
-    public class ZleceniaMappingProfile : Profile
+    public class MappingProfile : Profile
     {
-        public ZleceniaMappingProfile()
+        public MappingProfile()
         {
             CreateMap<Zlecenie, ZlecenieModel>()
                 .ForMember(m => m.KlientID, c => c.MapFrom(s => s.Klienci.Id))
@@ -17,6 +17,10 @@ namespace WebSerwisRowerowy
                 .ForMember(m => m.MetodPlatnosciID, c => c.MapFrom(s => s.MetodPlatnosci.Id));
 
             CreateMap<ZlecenieModel, Zlecenie>();
+            CreateMap<UslugaModel, Usluga>();
+            CreateMap<Usluga, UslugaModel>();
+            CreateMap<Klient, KlientModel>();
+            CreateMap<KlientModel, Klient>();
         }
     }
 }
