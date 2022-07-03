@@ -82,6 +82,10 @@ namespace WebSerwisRowerowy
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seeder seeder)
         {
+            //using (IServiceScope scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    scope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+            //}
             seeder.Seed();
             if (env.IsDevelopment())
             {
@@ -93,7 +97,12 @@ namespace WebSerwisRowerowy
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseMiddleware<RequestTimeMiddleware>();
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+
+            if (env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
+            
 
             app.UseRouting();
 
