@@ -13,7 +13,7 @@ namespace WebSerwisRowerowy.Models
         public string Pesel { get; set; }
         public string NrTelefonu { get; set; }
         public string Email { get; set; }
-        public DateTime DataRozpoczecia { get; set; }
+        public DateTime DataRozpoczecia { get; set; } = DateTime.Now;
         public DateTime? DataZakonczenia { get; set; }
     }
 }

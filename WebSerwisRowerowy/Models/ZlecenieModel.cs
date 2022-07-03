@@ -15,8 +15,9 @@ namespace WebSerwisRowerowy.Models
         public DateTime? DataOdbioru { get; set; }
         public decimal? CenaBrutto { get; set; }
         public int? MetodPlatnosciID { get; set; }
+        public int? StatusID { get; set; }
 
-
+        public virtual Status Statusy { get; set; }
         public virtual Klient Klienci { get; set; }
         public virtual MetodPlatnosci MetodPlatnosci { get; set; }
         public virtual Pracownik Pracownicy { get; set; }

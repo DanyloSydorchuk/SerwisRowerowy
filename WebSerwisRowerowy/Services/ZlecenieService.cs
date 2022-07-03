@@ -14,9 +14,9 @@ namespace WebSerwisRowerowy.Services
     {
         ZlecenieModel GetById(int id);
         IEnumerable<ZlecenieModel> GetAll();
-        int Create(ZlecenieModel zlecenieModel);
+        Task<int> Create(ZlecenieModel zlecenieModel);
         void Delete(int id);
-        void Update(int id, ZlecenieModel zlecenieModel);
+        Task UpdateAsync(int id, ZlecenieModel zlecenieModel);
     }
     public class ZlecenieService : IZlecenieService
     {
@@ -31,7 +31,7 @@ namespace WebSerwisRowerowy.Services
             _logger = logger;
         }
 
-        public int Create(ZlecenieModel zlecenieModel)
+        public async Task<int> Create(ZlecenieModel zlecenieModel)
         {
             var zlecenie = _mapper.Map<Zlecenie>(zlecenieModel);
             //var result = from uz in uslugaZlecenie
@@ -59,7 +59,7 @@ namespace WebSerwisRowerowy.Services
                       .Where(u => u.ZlecenieId == zlecenie.Id)
                       .Sum(u => u.Cena * u.Ilosc * (1+u.Podatek));
                 zlecenieModel.CenaBrutto = result;
-                Update(zlecenie.Id, zlecenieModel);
+                await UpdateAsync(zlecenie.Id, zlecenieModel);
 
             }
              return zlecenie.Id;
@@ -108,7 +108,7 @@ namespace WebSerwisRowerowy.Services
             return result;
         }
 
-        public void Update(int id, ZlecenieModel zlecenieModel)
+        public async Task UpdateAsync(int id, ZlecenieModel zlecenieModel)
         {
             var zlecenie = _dbContext.Zlecenia.FirstOrDefault(z => z.Id == id);
 
@@ -123,8 +123,41 @@ namespace WebSerwisRowerowy.Services
                 zlecenie.CenaBrutto = zlecenieModel.CenaBrutto;
             if (zlecenieModel.MetodPlatnosciID is not null)
                 zlecenie.MetodPlatnosciID = zlecenieModel.MetodPlatnosciID;
+            if (zlecenieModel.StatusID is not null)
+            {
+                zlecenie.StatusID = zlecenieModel.StatusID;
+
+                if (_dbContext.Klienci.Where(k => k.Id == zlecenie.KlientID).Select(k => k.Email) is not null)
+                {
+                    var email = new Email(new EmailParams
+                    {
+                        HostSmtp = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        SenderName = "Serwis Rowerowy",
+                        SenderEmail = "serwis.rowerowy.api@gmail.com",
+                        SenderEmailPassword = "mijsubmrwbrtgkdc"
+                    });
+
+                    string tresc;
+                    var status = _dbContext.Statusy.Find(zlecenie.StatusID);
+                    if (zlecenie.StatusID == 2)
+                    {
+                        tresc = $"Twoje zlecenie o numerze: {id} gotowe do odbioru.";
+                    }
+                    else
+                    {
+                        tresc = $"Twoje zlecenie o numerze: {id} zmieniło status na: {status.Nazwa}";
+                    }
+                    var klient = _dbContext.Klienci.Find(zlecenie.KlientID);
+                    await email.Send("Zmiana statusu zlecenia w Serwisie Rowerowym", tresc, klient.Email);
+                }
+            }
+                
 
             _dbContext.SaveChanges();
+            
+            
         }
     }
 }

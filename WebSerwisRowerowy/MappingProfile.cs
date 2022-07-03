@@ -11,16 +11,16 @@ namespace WebSerwisRowerowy
     {
         public MappingProfile()
         {
-            CreateMap<Zlecenie, ZlecenieModel>()
-                .ForMember(m => m.KlientID, c => c.MapFrom(s => s.Klienci.Id))
-                .ForMember(m => m.PracownikID, c => c.MapFrom(s => s.Pracownicy.Id))
-                .ForMember(m => m.MetodPlatnosciID, c => c.MapFrom(s => s.MetodPlatnosci.Id));
-
+            CreateMap<Zlecenie, ZlecenieModel>();
             CreateMap<ZlecenieModel, Zlecenie>();
+            CreateMap<Zlecenie, Klient>();
+            CreateMap<Klient, Zlecenie>();
             CreateMap<UslugaModel, Usluga>();
             CreateMap<Usluga, UslugaModel>();
             CreateMap<Klient, KlientModel>();
             CreateMap<KlientModel, Klient>();
+            CreateMap<Pracownik, PracownikModel>();
+            CreateMap<PracownikModel, Pracownik>();
         }
     }
 }

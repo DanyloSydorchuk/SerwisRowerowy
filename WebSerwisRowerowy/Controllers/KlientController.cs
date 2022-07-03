@@ -11,7 +11,7 @@ using WebSerwisRowerowy.Services;
 
 namespace WebSerwisRowerowy.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/klient")]
     [ApiController]
     [Authorize]
     public class KlientController : ControllerBase

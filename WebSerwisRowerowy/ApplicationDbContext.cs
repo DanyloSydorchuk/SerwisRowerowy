@@ -21,12 +21,13 @@ namespace WebSerwisRowerowy
         public virtual DbSet<Zlecenie> Zlecenia { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Status> Statusy { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .Property(u => u.Email)
-                .IsRequired(); //wymagane Email dla Usera
+                .IsRequired(); 
 
             modelBuilder.Entity<Role>()
                 .Property(u => u.Nazwa)

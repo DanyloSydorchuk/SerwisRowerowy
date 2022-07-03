@@ -55,7 +55,33 @@ namespace WebSerwisRowerowy.Controllers
         [HttpPut("{id}")]
         public ActionResult Update([FromRoute]int id, [FromBody] ZlecenieModel zlecenieModel)
         {
-            _zlecenieService.Update(id, zlecenieModel);
+            _zlecenieService.UpdateAsync(id, zlecenieModel);
+            //ZlecenieModel zlecenie = _zlecenieService.GetById(id);
+
+            //if (zlecenie.Klienci.Email is not null)
+            //{
+            //    var email = new Email(new EmailParams
+            //    {
+            //        HostSmtp = "smtp.gmail.com",
+            //        Port = 587,
+            //        EnableSsl = true,
+            //        SenderName = "Serwis Rowerowy",
+            //        SenderEmail = "serwis.rowerowy.api@gmail.com",
+            //        SenderEmailPassword = "mijsubmrwbrtgkdc"
+            //    });
+
+            //    string tresc;
+            //    if (zlecenie.Statusy.Nazwa == "Do odbioru")
+            //    {
+            //        tresc = $"Twoje zlecenie o numerze: {id} gotowe do odbioru.";
+            //    }
+            //    else
+            //    {
+            //        tresc = $"Twoje zlecenie o numerze: {id} zmieniło status na {zlecenie.Statusy.Nazwa}";
+            //    }
+
+            //    await email.Send("Zmiana statusu zlecenia w Serwisie Rowerowym", tresc, zlecenie.Klienci.Email);
+            //}
             return Ok();
 
         }

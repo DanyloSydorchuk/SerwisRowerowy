@@ -27,31 +27,31 @@ namespace WebSerwisRowerowy.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Adres")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Firma")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Imie")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("KodPocztowy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Miasto")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NIP")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("char(10)");
 
                     b.Property<string>("Nazwisko")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NrTelefonu")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -66,7 +66,7 @@ namespace WebSerwisRowerowy.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Nazwa")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -87,19 +87,19 @@ namespace WebSerwisRowerowy.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Imie")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nazwisko")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NrTelefonu")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Pesel")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("char(11)");
 
                     b.HasKey("Id");
 
@@ -115,11 +115,26 @@ namespace WebSerwisRowerowy.Migrations
 
                     b.Property<string>("Nazwa")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Role");
+                });
+
+            modelBuilder.Entity("WebSerwisRowerowy.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Nazwa")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statusy");
                 });
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.User", b =>
@@ -131,10 +146,10 @@ namespace WebSerwisRowerowy.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -154,13 +169,13 @@ namespace WebSerwisRowerowy.Migrations
                         .UseIdentityColumn();
 
                     b.Property<decimal?>("CenaNetto")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(12,2)");
 
                     b.Property<string>("Nazwa")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal?>("PodatekVAT")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -200,7 +215,7 @@ namespace WebSerwisRowerowy.Migrations
                         .UseIdentityColumn();
 
                     b.Property<decimal?>("CenaBrutto")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(12,2)");
 
                     b.Property<DateTime?>("DataOdbioru")
                         .HasColumnType("datetime2");
@@ -215,9 +230,12 @@ namespace WebSerwisRowerowy.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NazwaRoweru")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("PracownikID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatusID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -227,6 +245,8 @@ namespace WebSerwisRowerowy.Migrations
                     b.HasIndex("MetodPlatnosciID");
 
                     b.HasIndex("PracownikID");
+
+                    b.HasIndex("StatusID");
 
                     b.ToTable("Zlecenia");
                 });
@@ -277,11 +297,17 @@ namespace WebSerwisRowerowy.Migrations
                         .WithMany("Zlecenia")
                         .HasForeignKey("PracownikID");
 
+                    b.HasOne("WebSerwisRowerowy.Models.Status", "Statusy")
+                        .WithMany("Zlecenia")
+                        .HasForeignKey("StatusID");
+
                     b.Navigation("Klienci");
 
                     b.Navigation("MetodPlatnosci");
 
                     b.Navigation("Pracownicy");
+
+                    b.Navigation("Statusy");
                 });
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.Klient", b =>
@@ -295,6 +321,11 @@ namespace WebSerwisRowerowy.Migrations
                 });
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.Pracownik", b =>
+                {
+                    b.Navigation("Zlecenia");
+                });
+
+            modelBuilder.Entity("WebSerwisRowerowy.Models.Status", b =>
                 {
                     b.Navigation("Zlecenia");
                 });
