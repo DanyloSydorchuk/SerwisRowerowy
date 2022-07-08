@@ -1,10 +1,16 @@
 1.Połącznie z bazą danych;
-2.Logowanie użytkownika;
-3.Rejestracja użytkownika;
-4.Przypisanie Roli do użytkownika i podział zadań na role;
-5.Autoryzacja użytkownika za pomocą tokenu JWT;
-6.CRUD dla Użytkowników;
-7.CRUD dla Zleceń serwisowych;
-8.CRUD dla Usług;
-9.
+2.Dodanie migracji bazodanowej;
+3.Logowanie użytkownika;
+4.Rejestracja użytkownika;
+5.Przypisanie Roli do użytkownika i podział zadań na role;
+6.Autoryzacja użytkownika za pomocą tokenu JWT;
+7.CRUD dla Użytkowników;
+8.CRUD dla Zleceń serwisowych;
+9.Obliczenie sumy wykorzytsanych usług w zleceniu;
+10.CRUD dla Usług;
+11.CRUD dla Pracowników;
+12.CRUD dla Klientów;
+13.Wysyłanie maili przy zmianie statusu zlecenia;
+
+
 
