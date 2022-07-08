@@ -10,8 +10,8 @@ using WebSerwisRowerowy;
 namespace WebSerwisRowerowy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220703111145_Initial")]
-    partial class Initial
+    [Migration("20220707153452_ZlecenieUsluga-ModelUpdate")]
+    partial class ZlecenieUslugaModelUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -267,20 +267,20 @@ namespace WebSerwisRowerowy.Migrations
             modelBuilder.Entity("WebSerwisRowerowy.Models.UslugaZlecenie", b =>
                 {
                     b.HasOne("WebSerwisRowerowy.Models.Usluga", "Uslugi")
-                        .WithMany("UslugiZlecenia")
+                        .WithMany("UslugaZlecenie")
                         .HasForeignKey("UslugiID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebSerwisRowerowy.Models.Zlecenie", "Zlecenia")
-                        .WithMany("UslugiUzyte")
+                    b.HasOne("WebSerwisRowerowy.Models.Zlecenie", "Zlecenie")
+                        .WithMany("UslugaZlecenie")
                         .HasForeignKey("ZlecenieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Uslugi");
 
-                    b.Navigation("Zlecenia");
+                    b.Navigation("Zlecenie");
                 });
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.Zlecenie", b =>
@@ -334,12 +334,12 @@ namespace WebSerwisRowerowy.Migrations
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.Usluga", b =>
                 {
-                    b.Navigation("UslugiZlecenia");
+                    b.Navigation("UslugaZlecenie");
                 });
 
             modelBuilder.Entity("WebSerwisRowerowy.Models.Zlecenie", b =>
                 {
-                    b.Navigation("UslugiUzyte");
+                    b.Navigation("UslugaZlecenie");
                 });
 #pragma warning restore 612, 618
         }

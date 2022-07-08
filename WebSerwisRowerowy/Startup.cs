@@ -21,6 +21,7 @@ using AutoMapper;
 using WebSerwisRowerowy.Middleware;
 using WebSerwisRowerowy.Models;
 using WebSerwisRowerowy.Services;
+using WebSerwisRowerowy.Entities;
 
 namespace WebSerwisRowerowy
 {

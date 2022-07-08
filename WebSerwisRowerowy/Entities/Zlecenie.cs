@@ -5,15 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebSerwisRowerowy.Models;
 
-namespace WebSerwisRowerowy.Models
+namespace WebSerwisRowerowy.Entities
 {
     public class Zlecenie
     { 
-        public Zlecenie()
-        {
-            this.UslugiUzyte = new HashSet<UslugaZlecenie>();
-        }
-
         public int Id { get; set; }
         public int? PracownikID { get; set; }
         public int KlientID { get; set; }
@@ -30,6 +25,6 @@ namespace WebSerwisRowerowy.Models
         public virtual Klient Klienci { get; set; }
         public virtual MetodPlatnosci MetodPlatnosci { get; set; }
         public virtual Pracownik Pracownicy { get; set; }
-        public virtual ICollection<UslugaZlecenie> UslugiUzyte { get; set; }
+        public virtual ICollection<UslugaZlecenie> UslugaZlecenie { get; set; }
     }
 }

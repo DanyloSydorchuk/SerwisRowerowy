@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using WebSerwisRowerowy.Entities;
 using WebSerwisRowerowy.Exceptions;
 using WebSerwisRowerowy.Models;
 

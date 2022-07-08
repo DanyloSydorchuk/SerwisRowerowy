@@ -33,7 +33,6 @@ namespace WebSerwisRowerowy.Controllers
 
         // GET api/<KlientController>/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public ActionResult<KlientModel> Get([FromRoute]int id)
         {
             var klienci = _klientService.GetById(id);

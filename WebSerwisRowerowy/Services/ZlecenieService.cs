@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSerwisRowerowy.Entities;
 using WebSerwisRowerowy.Exceptions;
 using WebSerwisRowerowy.Models;
 
@@ -97,14 +98,15 @@ namespace WebSerwisRowerowy.Services
         {
             var zlecenie = _dbContext
                 .Zlecenia
-                //.Include(z => z.UslugiUzyte)
-                //.Include(z => z.MetodPlatnosci)
+                    .Include(z => z.UslugaZlecenie)
+                    .Include(z => z.MetodPlatnosci)
                 .FirstOrDefault(z => z.Id == id);
 
             if (zlecenie is null)
                 throw new NotFoundException($"Brak zlecenia o id: {id}");
 
             var result = _mapper.Map<ZlecenieModel>(zlecenie);
+            result.UslugiUzyte = zlecenie.UslugaZlecenie;
             return result;
         }
 

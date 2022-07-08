@@ -25,6 +25,7 @@ namespace WebSerwisRowerowy.Controllers
 
         // GET: api/<UslugaController>
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<UslugaModel>> GetAll()
         {
             var uslugi = _uslugaService.GetAll();

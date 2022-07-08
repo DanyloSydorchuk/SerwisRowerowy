@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebSerwisRowerowy.Models
+namespace WebSerwisRowerowy.Entities
 {
     public partial class UslugaZlecenie
     {
@@ -12,7 +12,6 @@ namespace WebSerwisRowerowy.Models
         public int UslugiID { get; set; }
         public int Ilosc { get; set; }
 
-        public virtual Usluga Uslugi { get; set; }
-        public virtual Zlecenie Zlecenia { get; set; }
+        public Usluga Uslugi { get; set; }
     }
 }

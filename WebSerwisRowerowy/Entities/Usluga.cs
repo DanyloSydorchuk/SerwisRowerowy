@@ -4,14 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebSerwisRowerowy.Models
+namespace WebSerwisRowerowy.Entities
 {
     public partial class Usluga
     {
-        public Usluga()
-        {
-            this.UslugiZlecenia = new HashSet<UslugaZlecenie>();
-        }
 
         public int Id { get; set; }
         [Column(TypeName = "nvarchar(100)")]
@@ -22,6 +18,6 @@ namespace WebSerwisRowerowy.Models
         public decimal? PodatekVAT { get; set; }
 
 
-        public virtual ICollection<UslugaZlecenie> UslugiZlecenia { get; set; }
+        public virtual ICollection<UslugaZlecenie> UslugaZlecenia { get; set; }
     }
 }
